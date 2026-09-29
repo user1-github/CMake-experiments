@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Cube 2: Sauerbraten
+Comment=Free multiplayer & singleplayer first person shooter
+Icon=org.sauerbraten.Sauerbraten
+Exec=sauerbraten
+Categories=Game;ActionGame;Shooter;
+Keywords=fps;action;multiplayer;play;arena;mapeditor;
