@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Tesseract Continued
+Comment=Modernized Tesseract game engine
+Icon=io.github.big_onche.Tesseract-Continued
+Exec=tesseract
+Categories=Game;ActionGame;Shooter;
+Keywords=fps;action;multiplayer;play;arena;mapeditor;
