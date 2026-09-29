@@ -50,6 +50,11 @@ modules:
   - name: tesseract
     buildsystem: cmake-ninja
     no-make-install: true
+    build-options:
+      env:
+        CXXFLAGS: ''
+    make-args:
+      - -v
     subdir: src
     sources:
       - type: git
