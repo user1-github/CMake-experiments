@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 4.0)
 
 project(Tesseract LANGUAGES CXX)
 
-set(CMAKE_CXX_FLAGS "-O3 -fomit-frame-pointer -ffast-math -Wall -fsigned-char -fno-exceptions -fno-rtti")
-
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_mixer REQUIRED)
@@ -80,9 +78,19 @@ target_link_libraries(tesseract_client PRIVATE
     SDL2::SDL2
     SDL2_image::SDL2_image
     SDL2_mixer::SDL2_mixer
-    OpenGL::GL
+    OpenGL::OpenGL
     ZLIB::ZLIB
     X11::X11
     PkgConfig::ENET
     rt
+)
+
+target_compile_options(tesseract_client PRIVATE
+    -O3
+    -fomit-frame-pointer
+    -ffast-math
+    -Wall
+    -fsigned-char
+    -fno-exceptions
+    -fno-rtti
 )
