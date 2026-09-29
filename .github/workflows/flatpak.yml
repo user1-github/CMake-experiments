@@ -1,0 +1,19 @@
+on:
+  push:
+    branches: [sauerbraten]
+  pull_request:
+name: CI
+jobs:
+  flatpak:
+    name: "Flatpak"
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-26.08
+      options: --privileged
+    steps:
+    - uses: actions/checkout@v7
+    - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+      with:
+        bundle: sauerbraten.flatpak
+        manifest-path: org.sauerbraten.Sauerbraten.yaml
+        cache-key: flatpak-builder-${{ github.sha }}
