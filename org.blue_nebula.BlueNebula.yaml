@@ -1,0 +1,69 @@
+id: org.blue_nebula.BlueNebula
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+sdk: org.freedesktop.Sdk
+command: bn_client
+finish-args:
+  - --device=dri
+  - --share=ipc
+  - --share=network
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --persist=.blue-nebula
+cleanup:
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - '*.la'
+  - '*.a'
+modules:
+
+  - name: enet
+    sources:
+      - type: archive
+        url: http://enet.bespin.org/download/enet-1.3.18.tar.gz
+        sha256: 2a8a0c5360d68bb4fcd11f2e4c47c69976e8d2c85b109dd7d60b1181a4f85d36
+
+  - name: SDL2_image
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DSDL2IMAGE_DEPS_SHARED=OFF
+      - -DSDL2IMAGE_STRICT=ON
+    sources:
+      - type: archive
+        url: https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.12/SDL2_image-2.8.12.tar.gz
+        sha256: 393f5efb50536ec13ca4f4affb69cc9966d3c3f969e6c5e701faddf9f9785381
+
+  - name: SDL2_mixer
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DSDL2MIXER_MOD=OFF
+      - -DSDL2MIXER_MIDI=OFF
+    sources:
+      - type: archive
+        url: https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.8.2/SDL2_mixer-2.8.2.tar.gz
+        sha256: 938dff531d00ace2296557a6599abe6f34599e2f34f0a4a08a397e2ccac8b8f7
+
+  - name: blue-nebula
+    buildsystem: cmake-ninja
+    no-make-install: true
+    build-options:
+      env:
+        CXXFLAGS: ''
+    make-args:
+      - -v
+    subdir: src
+    sources:
+      - type: git
+        url: https://github.com/user1-github/base-1.git
+        commit: f6e5c7d4d586fd5c7e1d2a357aef80f7de3b20ee
+    post-install:
+      - mkdir -p /app/share/blue-nebula
+      - cp -a ../config ../data /app/share/blue-nebula
+      - install -Dm755 bn_client -t /app/bin
+      - install -Dm644 ../src/install/nix/blue-nebula_256.png /app/share/icons/hicolor/256x256/apps/org.blue_nebula.BlueNebula.png
+      - install -Dm644 ../src/install/nix/blue-nebula.desktop.am /app/share/applications/org.blue_nebula.BlueNebula.desktop
+      - desktop-file-edit --set-icon=org.blue_nebula.BlueNebula --set-key=Exec --set-value=bn_client /app/share/applications/org.blue_nebula.BlueNebula.desktop
