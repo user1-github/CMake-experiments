@@ -60,7 +60,7 @@ modules:
     post-install:
       - install -Dm755 ../cube-conflict.sh /app/bin/cube-conflict
       - install -Dm755 ../run.sh -t /app/share/cube-conflict
-      - install -Dm755 ../bins/cc_client -t /app/share/cube-conflict/bins
+      - install -Dm755 cc_client -t /app/share/cube-conflict/bins
       - cp -a ../config ../media /app/share/cube-conflict
       - install -Dm644 ../media/interface/cclogo.png /app/share/icons/hicolor/128x128/apps/com.cube_conflict.CubeConflict.png
       - install -Dm644 ../com.cube_conflict.CubeConflict.desktop -t /app/share/applications
