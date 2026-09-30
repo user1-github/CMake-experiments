@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Cube Conflict
+Comment=FPS game involving smileys
+Icon=com.cube_conflict.CubeConflict
+Exec=cube-conflict
+Categories=Game;ActionGame;Shooter;
+Keywords=fps;action;multiplayer;play;mapeditor;
