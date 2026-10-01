@@ -1,0 +1,27 @@
+From 01c5ac02f0d83fec320dcc874009203f6dedc3ff Mon Sep 17 00:00:00 2001
+From: user1-github <56021366+user1-github@users.noreply.github.com>
+Date: Thu, 1 Oct 2026 19:37:18 +0300
+Subject: [PATCH] Don't rely on enet_crc32_inc
+
+Seems unnecessary, as we can use zlib's implementation which is also going to be more efficient.
+---
+ source/src/main.cpp | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/source/src/main.cpp b/source/src/main.cpp
+index e3d42881c8..7f4cb6675c 100644
+--- a/source/src/main.cpp
++++ b/source/src/main.cpp
+@@ -247,9 +247,9 @@ void writepngchunk(stream *f, const char *type, const void *data = NULL, uint le
+     if(data) f->write(data, len);
+ 
+     uint crc = crc32(0, Z_NULL, 0);
+-    crc = ~crc32(crc, (const Bytef *)type, 4);
+-    if(data) loopi(len) enet_crc32_inc(&crc, ((const uchar *)data)[i]);
+-    f->putbig<uint>(~crc);
++    crc = crc32(crc, (const Bytef *)type, 4);
++    if(data) crc = crc32(crc, data, len);
++    f->putbig<uint>(crc);
+ }
+ 
+ int save_png(const char *filename, SDL_Surface *image)
