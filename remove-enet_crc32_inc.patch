@@ -20,7 +20,7 @@ index e3d42881c8..7f4cb6675c 100644
 -    if(data) loopi(len) enet_crc32_inc(&crc, ((const uchar *)data)[i]);
 -    f->putbig<uint>(~crc);
 +    crc = crc32(crc, (const Bytef *)type, 4);
-+    if(data) crc = crc32(crc, data, len);
++    if(data) crc = crc32(crc, (const Bytef *)data, len);
 +    f->putbig<uint>(crc);
  }
  
