@@ -78,7 +78,6 @@ target_link_libraries(ac_client PRIVATE
     SDL2::SDL2
     SDL2_image::SDL2_image
     OpenAL::OpenAL
-    Vorbis::vorbisfile
     OpenGL::OpenGL
     ZLIB::ZLIB
     X11::X11
