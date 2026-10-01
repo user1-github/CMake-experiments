@@ -5,12 +5,12 @@ project(Assault_Cube LANGUAGES CXX)
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(OpenAL REQUIRED)
-find_package(Vorbis REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(X11 REQUIRED)
 
 find_package(PkgConfig REQUIRED)
+pkg_check_modules(VORBISFILE REQUIRED IMPORTED_TARGET vorbisfile)
 pkg_check_modules(ENET REQUIRED IMPORTED_TARGET libenet)
 
 add_executable(ac_client
@@ -82,6 +82,7 @@ target_link_libraries(ac_client PRIVATE
     OpenGL::OpenGL
     ZLIB::ZLIB
     X11::X11
+    PkgConfig::VORBISFILE
     PkgConfig::ENET
 )
 
