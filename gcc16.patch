@@ -1,0 +1,173 @@
+From 3afff6041174ec1c53110156a125d9f22a9105a2 Mon Sep 17 00:00:00 2001
+From: CubeConflict <11237205+Big-Onche@users.noreply.github.com>
+Date: Thu, 24 Sep 2026 12:14:02 +0200
+Subject: [PATCH] fix | GCC 16 compilation issues
+
+---
+ src/engine/rendergl.cpp        | 18 +++++++++---------
+ src/engine/renderparticles.cpp |  2 +-
+ src/engine/sound.cpp           |  4 ++--
+ src/game/bouncers.cpp          |  2 +-
+ src/game/weapon.cpp            |  4 ++--
+ src/shared/tools.cpp           |  2 +-
+ src/shared/tools.h             |  4 +++-
+ 7 files changed, 19 insertions(+), 17 deletions(-)
+
+diff --git a/src/engine/rendergl.cpp b/src/engine/rendergl.cpp
+index 83c34284..c0546280 100644
+--- a/src/engine/rendergl.cpp
++++ b/src/engine/rendergl.cpp
+@@ -1589,11 +1589,11 @@ void updateCameraAnimations()
+             case CAM_ANIM_JUMP:
+             {
+                 float newPitch = 0.0f;
+-                if(progress < 0.4) newPitch = lerp(0, anim.animAxis.y, progress / 0.4);
++                if(progress < 0.4) newPitch = lerpf(0, anim.animAxis.y, progress / 0.4);
+                 else
+                 {
+                     float np = (progress - 0.4f) / 0.6f; // Normalize progress
+-                    newPitch = (lerp(anim.animAxis.y, 0, np)) / -1.4f;
++                    newPitch = (lerpf(anim.animAxis.y, 0, np)) / -1.4f;
+                 }
+                 newAxis.y += newPitch;
+             }
+@@ -1605,14 +1605,14 @@ void updateCameraAnimations()
+ 
+                 if(progress < 0.4)
+                 {
+-                    newHeight = lerp(0, anim.animPositions.z, progress / 0.4);
+-                    newPitch = lerp(0, anim.animAxis.y, progress / 0.4);
++                    newHeight = lerpf(0, anim.animPositions.z, progress / 0.4);
++                    newPitch = lerpf(0, anim.animAxis.y, progress / 0.4);
+                 }
+                 else
+                 {
+                     float np = (progress - 0.4f) / 0.6f; // Normalize progress
+-                    newHeight = lerp(anim.animPositions.z, 0, np);
+-                    newPitch = (lerp(anim.animAxis.y, 0, np)) / -1.4f;
++                    newHeight = lerpf(anim.animPositions.z, 0, np);
++                    newPitch = (lerpf(anim.animAxis.y, 0, np)) / -1.4f;
+                 }
+                 newPosition.z = newHeight;
+                 newAxis.y += newPitch;
+@@ -1623,11 +1623,11 @@ void updateCameraAnimations()
+             {
+                 float newPitch = 0.0f;
+ 
+-                if(progress < 0.3) newPitch = lerp(0, anim.animAxis.y, progress / 0.3);
++                if(progress < 0.3) newPitch = lerpf(0, anim.animAxis.y, progress / 0.3);
+                 else
+                 {
+                     float descentProgress = (progress - 0.3f) / 0.7f; // Normalize progress
+-                    newPitch = (lerp(anim.animAxis.y, 0, descentProgress)) / -2.33f;
++                    newPitch = (lerpf(anim.animAxis.y, 0, descentProgress)) / -2.33f;
+                 }
+ 
+                 if(anim.maxAxis.y)
+@@ -1639,7 +1639,7 @@ void updateCameraAnimations()
+                 }
+                 else newAxis.y += newPitch;
+ 
+-                float newYaw = lerp(0, anim.animAxis.x, progress);
++                float newYaw = lerpf(0, anim.animAxis.x, progress);
+                 newAxis.x += newYaw;
+             }
+             break;
+diff --git a/src/engine/renderparticles.cpp b/src/engine/renderparticles.cpp
+index 9a4192c1..4748a617 100644
+--- a/src/engine/renderparticles.cpp
++++ b/src/engine/renderparticles.cpp
+@@ -3326,7 +3326,7 @@ static void makeparticles(entity &e)
+                     bouncers::add(e.o, pos.add(vec(xOffset, zOffset, yOffset)), true, 0, game::player1, BNC_BIGROCK, 15000+rnd(5000), e.attr6);
+                 }
+                 playSound(S_EXPL_VOLCANO, e.o, 3000, 1500, SND_NOOCCLUSION);
+-                if(game::hudplayer()->physstate == PHYS_FLOOR) shakeScreen(0.1f + lerp(0.f, 0.5f, clamp(camera1->o.dist(e.o) / 1000.0f, 0.f, 1.f)));
++                if(game::hudplayer()->physstate == PHYS_FLOOR) shakeScreen(0.1f + lerpf(0.f, 0.5f, clamp(camera1->o.dist(e.o) / 1000.0f, 0.f, 1.f)));
+             }
+             break;
+         }
+diff --git a/src/engine/sound.cpp b/src/engine/sound.cpp
+index 9a791309..0188abd6 100644
+--- a/src/engine/sound.cpp
++++ b/src/engine/sound.cpp
+@@ -654,8 +654,8 @@ void updateSoundOcclusion(int id)
+ 
+     if(progress < 1.0f)
+     {
+-        sounds[id].lfOcclusionGain = lerp(sounds[id].lfOcclusionGain, targetLF, progress);
+-        sounds[id].hfOcclusionGain = lerp(sounds[id].hfOcclusionGain, targetHF, progress);
++        sounds[id].lfOcclusionGain = lerpf(sounds[id].lfOcclusionGain, targetLF, progress);
++        sounds[id].hfOcclusionGain = lerpf(sounds[id].hfOcclusionGain, targetHF, progress);
+     }
+     else
+     {
+diff --git a/src/game/bouncers.cpp b/src/game/bouncers.cpp
+index 3a5c2683..489ce5bc 100644
+--- a/src/game/bouncers.cpp
++++ b/src/game/bouncers.cpp
+@@ -362,7 +362,7 @@ namespace bouncers
+                     }
+                     else bnc.roll += rot;
+                 }
+-                else bnc.pitch = lerp(bnc.pitch, 180, 0.5f);
++                else bnc.pitch = lerpf(bnc.pitch, 180, 0.5f);
+             }
+ 
+             if(bouncerType == BNC_MOLOTOV)
+diff --git a/src/game/weapon.cpp b/src/game/weapon.cpp
+index 092cb504..3c24d7cd 100644
+--- a/src/game/weapon.cpp
++++ b/src/game/weapon.cpp
+@@ -205,7 +205,7 @@ namespace game
+     float spread(int atk, gameent *d)
+     {
+         float aimProgress = getAimProgress(d);
+-        return lerp((float)attacks[atk].noaimspread, (float)attacks[atk].aimspread, aimProgress);
++        return lerpf((float)attacks[atk].noaimspread, (float)attacks[atk].aimspread, aimProgress);
+     }
+ 
+     void createrays(int atk, const vec &from, const vec &to, gameent *d)             // create random spread of rays
+@@ -433,7 +433,7 @@ namespace game
+     {
+         float distance = camera1->o.dist(v);
+         if(distance > maxdist) return;
+-        float factor = lerp(1.0f, 0.0f, distance / maxdist); // As normalized distance increases, the factor linearly decreases from 1 to 0
++        float factor = lerpf(1.0f, 0.0f, distance / maxdist); // As normalized distance increases, the factor linearly decreases from 1 to 0
+         factor *= factorMod;
+         shakeScreen(factor);
+     }
+diff --git a/src/shared/tools.cpp b/src/shared/tools.cpp
+index 8cb72253..082412da 100644
+--- a/src/shared/tools.cpp
++++ b/src/shared/tools.cpp
+@@ -283,7 +283,7 @@ int rygbGradient(int val)
+ int rgbToHex(int r, int g, int b) { return (r << 16) | (g << 8) | b; }
+ void hexToRgb(int val, int &r, int &g, int &b) { r = (val >> 16) & 0xFF; g = (val >> 8) & 0xFF; b = val & 0xFF; }
+ 
+-float lerp(float a, float b, float t) { return a + (b - a) * t; }
++float lerpf(float a, float b, float t) { return a + (b - a) * t; }
+ 
+ float rndf(float min, float max) { return min + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (max - min))); }
+ 
+diff --git a/src/shared/tools.h b/src/shared/tools.h
+index 5a4c9f00..8f6e36c8 100644
+--- a/src/shared/tools.h
++++ b/src/shared/tools.h
+@@ -3,6 +3,8 @@
+ #ifndef _TOOLS_H
+ #define _TOOLS_H
+ 
++#include <new>
++
+ #ifdef NULL
+ #undef NULL
+ #endif
+@@ -1467,7 +1469,7 @@ struct ipmask
+ extern int rygbGradient(int val);
+ extern int rgbToHex(int r, int g, int b);
+ extern void hexToRgb(int val, int &r, int &g, int &b);
+-extern float lerp(float a, float b, float t);
++extern float lerpf(float a, float b, float t);
+ extern float rndf(float min, float max);
+ 
+ #endif
