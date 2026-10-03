@@ -2,7 +2,7 @@ id: com.cube_conflict.CubeConflict
 runtime: org.freedesktop.Platform
 runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
-command: cube-conflict
+command: cubeconflict
 finish-args:
   - --device=dri
   - --share=ipc
@@ -47,20 +47,22 @@ modules:
     sources:
       - type: git
         url: https://github.com/Big-Onche/Cube-Conflict.git
-        commit: f2a8b428fc1ece3bb10ce5909a3fede707b095dd
+        commit: bcf94c7bb5f15e5f52dac2c021ebc32fe81400d3
       - type: file
-        path: cube-conflict.sh
+        path: cube_conflict.sh
       - type: file
         path: CMakeLists.txt
       - type: file
         path: com.cube_conflict.CubeConflict.desktop
+      - type: patch
+        path: gcc16.patch
       - type: shell
         commands:
           - cp CMakeLists.txt -t src
     post-install:
-      - install -Dm755 ../cube-conflict.sh /app/bin/cube-conflict
-      - install -Dm755 ../run.sh -t /app/share/cube-conflict
-      - install -Dm755 cc_client -t /app/share/cube-conflict/bins
-      - cp -a ../config ../media /app/share/cube-conflict
+      - install -Dm755 ../cube_conflict.sh /app/bin/cubeconflict
+      - install -Dm755 ../run.sh /app/share/cubeconflict/run
+      - install -Dm755 cc_client -t /app/share/cubeconflict/bins
+      - cp -a ../config ../media /app/share/cubeconflict
       - install -Dm644 ../media/interface/cclogo.png /app/share/icons/hicolor/128x128/apps/com.cube_conflict.CubeConflict.png
       - install -Dm644 ../com.cube_conflict.CubeConflict.desktop -t /app/share/applications
