@@ -10,11 +10,11 @@ finish-args:
   - --socket=wayland
   - --socket=fallback-x11
   - --socket=pulseaudio
-  - --persist=.sauerbraten
 cleanup:
   - /include
   - /lib/cmake
   - /lib/pkgconfig
+  - /share/licenses
   - '*.la'
   - '*.a'
 modules:
@@ -74,7 +74,7 @@ modules:
     post-install:
       - mkdir -p /app/share/sauerbraten
       - cp -a ../data ../packages /app/share/sauerbraten
-      - install -Dm755 sauerbraten_client -t /app/bin
+      - install -Dm755 client -t /app/bin
       - install -Dm755 ../sauerbraten.sh /app/bin/sauerbraten
       - install -Dm644 ../data/cube.png /app/share/icons/hicolor/256x256/apps/org.sauerbraten.Sauerbraten.png
       - install -Dm644 ../org.sauerbraten.Sauerbraten.desktop -t /app/share/applications
