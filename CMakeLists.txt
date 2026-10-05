@@ -12,7 +12,7 @@ find_package(X11 REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(ENET REQUIRED IMPORTED_TARGET libenet)
 
-add_executable(sauerbraten_client
+add_executable(client
     shared/crypto.cpp
     shared/geom.cpp
     shared/glemu.cpp
@@ -70,13 +70,13 @@ add_executable(sauerbraten_client
     fpsgame/weapon.cpp
 )
 
-target_include_directories(sauerbraten_client PRIVATE
+target_include_directories(client PRIVATE
     engine
     fpsgame
     shared
 )
 
-target_link_libraries(sauerbraten_client PRIVATE
+target_link_libraries(client PRIVATE
     SDL2::SDL2
     SDL2_image::SDL2_image
     SDL2_mixer::SDL2_mixer
@@ -87,7 +87,7 @@ target_link_libraries(sauerbraten_client PRIVATE
     rt
 )
 
-target_compile_options(sauerbraten_client PRIVATE
+target_compile_options(client PRIVATE
     -O3
     -fomit-frame-pointer
     -ffast-math
