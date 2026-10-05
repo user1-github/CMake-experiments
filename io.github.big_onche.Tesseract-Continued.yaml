@@ -10,11 +10,11 @@ finish-args:
   - --socket=wayland
   - --socket=fallback-x11
   - --socket=pulseaudio
-  - --persist=.tesseract
 cleanup:
   - /include
   - /lib/cmake
   - /lib/pkgconfig
+  - /share/licenses
   - '*.la'
   - '*.a'
 modules:
@@ -74,7 +74,7 @@ modules:
     post-install:
       - mkdir -p /app/share/tesseract
       - cp -a ../config ../media /app/share/tesseract
-      - install -Dm755 tesseract_client -t /app/bin
+      - install -Dm755 client -t /app/bin
       - install -Dm755 ../tesseract.sh /app/bin/tesseract
       - install -Dm644 ../media/interface/cube.png /app/share/icons/hicolor/256x256/apps/io.github.big_onche.Tesseract-Continued.png
       - install -Dm644 ../io.github.big_onche.Tesseract-Continued.desktop -t /app/share/applications
