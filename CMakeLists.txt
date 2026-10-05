@@ -12,7 +12,7 @@ find_package(X11 REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(ENET REQUIRED IMPORTED_TARGET libenet)
 
-add_executable(tesseract_client
+add_executable(client
     shared/crypto.cpp
     shared/geom.cpp
     shared/glemu.cpp
@@ -68,13 +68,13 @@ add_executable(tesseract_client
     game/weapon.cpp
 )
 
-target_include_directories(tesseract_client PRIVATE
+target_include_directories(client PRIVATE
     engine
     game
     shared
 )
 
-target_link_libraries(tesseract_client PRIVATE
+target_link_libraries(client PRIVATE
     SDL2::SDL2
     SDL2_image::SDL2_image
     SDL2_mixer::SDL2_mixer
@@ -85,7 +85,7 @@ target_link_libraries(tesseract_client PRIVATE
     rt
 )
 
-target_compile_options(tesseract_client PRIVATE
+target_compile_options(client PRIVATE
     -O3
     -fomit-frame-pointer
     -ffast-math
