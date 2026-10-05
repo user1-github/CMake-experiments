@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [sauerbraten*]
+    branches: [sauerbraten]
   pull_request:
 name: CI
 jobs:
