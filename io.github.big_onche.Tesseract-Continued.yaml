@@ -70,7 +70,7 @@ modules:
         path: gcc16.patch
       - type: shell
         commands:
-          - cp CMakeLists.txt -t src
+          - cp CMakeLists.txt src
     post-install:
       - mkdir -p /app/share/tesseract
       - cp -a ../config ../media /app/share/tesseract
