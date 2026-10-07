@@ -1,0 +1,24 @@
+From 6301a9104ea011b9bf3f96c45ff8116bbca794c2 Mon Sep 17 00:00:00 2001
+From: user1-github <56021366+user1-github@users.noreply.github.com>
+Date: Wed, 7 Oct 2026 16:40:50 +0300
+Subject: [PATCH] Use XDG_DATA_HOME for user data
+
+---
+ src/engine/server.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/engine/server.cpp b/src/engine/server.cpp
+index 4e4a5eaf9..25a552670 100644
+--- a/src/engine/server.cpp
++++ b/src/engine/server.cpp
+@@ -1640,8 +1640,8 @@ void setlocations(const char *bin)
+         const char *str = getenv("HOME");
+         if(str && *str) formatstring(dir, "%s/Library/Application Support/%s", str, versionname);
+ #else
+-        const char *str = getenv("HOME");
+-        if(str && *str) formatstring(dir, "%s/.%s", str, versionuname);
++        const char *str = getenv("XDG_DATA_HOME");
++        if(str && *str) formatstring(dir, "%s/%s", str, versionuname);
+ #endif
+         if(homedirappend && dir[0] && *versionbranch) appendhomedir(versionbranch);
+     }
