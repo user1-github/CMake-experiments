@@ -55,6 +55,7 @@ modules:
         path: xdg_data_home.patch
       - type: shell
         commands:
+          - rm src/CMakeLists.txt
           - cp CMakeLists.txt -t src
     post-install:
       - install -Dm755 ../redeclipse.sh /app/bin/redeclipse
