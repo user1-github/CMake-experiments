@@ -53,12 +53,15 @@ modules:
         path: redeclipse.sh
       - type: file
         path: CMakeLists.txt
+      - type: file
+        path: jsmn.h
       - type: patch
         path: xdg_data_home.patch
       - type: shell
         commands:
           - rm src/CMakeLists.txt
-          - cp CMakeLists.txt -t src
+          - cp CMakeLists.txt src
+          - cp jsmn.h src/engine
     post-install:
       - install -Dm755 ../redeclipse.sh /app/bin/redeclipse
       - install -Dm755 client -t /app/share/redeclipse
