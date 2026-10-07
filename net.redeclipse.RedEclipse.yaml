@@ -1,0 +1,65 @@
+id: net.redeclipse.RedEclipse
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+sdk: org.freedesktop.Sdk
+command: client
+finish-args:
+  - --device=dri
+  - --share=ipc
+  - --share=network
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+cleanup:
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - /share/licenses
+  - '*.la'
+  - '*.a'
+modules:
+
+  - name: enet
+    sources:
+      - type: archive
+        url: http://enet.bespin.org/download/enet-1.3.18.tar.gz
+        sha256: 2a8a0c5360d68bb4fcd11f2e4c47c69976e8d2c85b109dd7d60b1181a4f85d36
+
+  - name: SDL2_image
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DSDL2IMAGE_DEPS_SHARED=OFF
+      - -DSDL2IMAGE_STRICT=ON
+    sources:
+      - type: archive
+        url: https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.12/SDL2_image-2.8.12.tar.gz
+        sha256: 393f5efb50536ec13ca4f4affb69cc9966d3c3f969e6c5e701faddf9f9785381
+
+  - name: redeclipse
+    buildsystem: cmake-ninja
+    no-make-install: true
+    build-options:
+      env:
+        CXXFLAGS: ''
+    make-args:
+      - -v
+    subdir: src
+    sources:
+      - type: git
+        url: https://github.com/redeclipse/base.git
+        commit: f6caf4f714db88f58f06eb415b949f9dc9b19c3f
+      - type: file
+        path: redeclipse.sh
+      - type: patch
+        path: xdg_data_home.patch
+      - type: shell
+        commands:
+          - cp CMakeLists.txt -t src
+    post-install:
+      - install -Dm755 ../redeclipse.sh /app/bin/redeclipse
+      - install -Dm755 client -t /app/share/redeclipse
+      - cp -a ../config ../data /app/share/redeclipse
+      - install -Dm644 ../src/install/nix/redeclipse.desktop.am /app/share/applications/net.redeclipse.RedEclipse.desktop
+      - install -Dm644 ../src/install/nix/redeclipse_x512.png /app/share/icons/hicolor/512x512/apps/net.redeclipse.RedEclipse.png
+      - desktop-file-edit --set-icon=net.redeclipse.RedEclipse --set-key=Exec --set-value=redeclipse /app/share/applications/net.redeclipse.RedEclipse.desktop
