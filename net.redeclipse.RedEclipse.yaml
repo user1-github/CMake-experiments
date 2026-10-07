@@ -51,6 +51,8 @@ modules:
         commit: f6caf4f714db88f58f06eb415b949f9dc9b19c3f
       - type: file
         path: redeclipse.sh
+      - type: file
+        path: CMakeLists.txt
       - type: patch
         path: xdg_data_home.patch
       - type: shell
