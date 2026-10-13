@@ -41,6 +41,7 @@ add_executable(client
     engine/material.cpp
     engine/mcube.cpp
     engine/menus.cpp
+    engine/movie.cpp
     engine/normal.cpp
     engine/octa.cpp
     engine/octaedit.cpp
