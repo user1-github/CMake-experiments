@@ -54,6 +54,8 @@ modules:
       - type: file
         path: CMakeLists.txt
       - type: file
+        path: FastNoiseLite.h
+      - type: file
         path: io.github.big_onche.Tesseract-Sauerbraten.png
       - type: file
         path: io.github.big_onche.Tesseract-Sauerbraten.desktop
@@ -62,6 +64,7 @@ modules:
       - type: shell
         commands:
           - cp CMakeLists.txt src
+          - cp FastNoiseLite.h src/engine
     post-install:
       - mkdir -p /app/share/sauerract
       - cp -a ../config ../packages /app/share/sauerract
