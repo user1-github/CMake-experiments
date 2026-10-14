@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Tesseract Sauerbraten
+Comment=Cube 2: Sauerbraten ported to Tesseract
+Icon=io.github.big_onche.Tesseract-Sauerbraten
+Exec=sauerract
+Categories=Game;ActionGame;Shooter;
+Keywords=fps;action;multiplayer;play;arena;mapeditor;
