@@ -58,7 +58,6 @@ add_executable(client
     engine/stain.cpp
     engine/texture.cpp
     engine/ui.cpp
-    engine/volumetric.cpp
     engine/water.cpp
     engine/world.cpp
     engine/worldio.cpp
