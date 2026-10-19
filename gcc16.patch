@@ -2,8 +2,8 @@ From: Sébastien Noel <twolife@debian.org>
 Description: fix FTBFS with GCC-16
 Forwarded: no
 
---- a/src/shared/tools.h
-+++ b/src/shared/tools.h
+--- a/source/shared/tools.h
++++ b/source/shared/tools.h
 @@ -36,10 +36,7 @@
  
  void *operator new(size_t, bool);
