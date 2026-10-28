@@ -39,9 +39,6 @@ modules:
   - name: redeclipse
     buildsystem: cmake-ninja
     no-make-install: true
-    build-options:
-      env:
-        CXXFLAGS: ''
     make-args:
       - -v
     subdir: src
