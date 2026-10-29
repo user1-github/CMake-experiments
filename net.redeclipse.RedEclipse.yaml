@@ -45,7 +45,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/redeclipse/base.git
-        commit: b07c2f07e78436b073ed5385262939399dda0634
+        commit: e53d4a2f0bd4e0259148994a7f70296c48ba72cf
       - type: file
         path: redeclipse.sh
       - type: file
