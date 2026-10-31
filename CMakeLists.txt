@@ -29,7 +29,6 @@ add_executable(client
     engine/godrays.cpp
     engine/grass.cpp
     engine/heathaze.cpp
-    engine/lensflare.cpp
     engine/light.cpp
     engine/main.cpp
     engine/material.cpp
