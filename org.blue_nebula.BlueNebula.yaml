@@ -9,7 +9,7 @@ finish-args:
   - --share=network
   - --socket=wayland
   - --socket=fallback-x11
-  - --socket=pulseaudio
+  - --filesystem=xdg-run/pipewire-0:ro
 cleanup:
   - /include
   - /lib/cmake
