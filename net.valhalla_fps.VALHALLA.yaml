@@ -9,7 +9,7 @@ finish-args:
   - --share=network
   - --socket=wayland
   - --socket=fallback-x11
-  - --socket=pulseaudio
+  - --filesystem=xdg-run/pipewire-0:ro
 cleanup:
   - /include
   - /lib/cmake
@@ -57,7 +57,6 @@ modules:
       - type: git
         url: https://github.com/project-valhalla/base.git
         tag: 'v1.0.0-beta.2'
-        commit: d8001f035947b5853c012358b30ac964c4ce6ba5
       - type: file
         path: valhalla.sh
       - type: file
