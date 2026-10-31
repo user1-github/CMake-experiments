@@ -9,7 +9,7 @@ finish-args:
   - --share=network
   - --socket=wayland
   - --socket=fallback-x11
-  - --socket=pulseaudio
+  - --filesystem=xdg-run/pipewire-0:ro
 cleanup:
   - /include
   - /lib/cmake
@@ -45,7 +45,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/redeclipse/base.git
-        commit: e53d4a2f0bd4e0259148994a7f70296c48ba72cf
+        commit: 65d41326de498fcd77ab330ef5c1e624e67579f6
       - type: file
         path: redeclipse.sh
       - type: file
