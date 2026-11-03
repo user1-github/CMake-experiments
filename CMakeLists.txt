@@ -13,7 +13,7 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(VORBISFILE REQUIRED IMPORTED_TARGET vorbisfile)
 pkg_check_modules(ENET REQUIRED IMPORTED_TARGET libenet)
 
-add_executable(ac_client
+add_executable(client
     src/crypto.cpp
     src/audiomanager.cpp
     src/autodownload.cpp
@@ -69,12 +69,12 @@ add_executable(ac_client
     src/bot/ac_bot_ai.cpp
 )
 
-target_include_directories(ac_client PRIVATE
+target_include_directories(client PRIVATE
     src
     src/bot
 )
 
-target_link_libraries(ac_client PRIVATE
+target_link_libraries(client PRIVATE
     SDL2::SDL2
     SDL2_image::SDL2_image
     OpenAL::OpenAL
@@ -85,9 +85,12 @@ target_link_libraries(ac_client PRIVATE
     PkgConfig::ENET
 )
 
-target_compile_options(ac_client PRIVATE
+target_compile_options(client PRIVATE
     -O3
     -fomit-frame-pointer
+    -ffast-math
     -Wall
     -fsigned-char
+    -fno-exceptions
+    -fno-rtti
 )
