@@ -1,4 +1,7 @@
 #!/bin/sh
+CUBE_DATA=/app/share/cubeconflict
+CUBE_BIN=/app/bin/client
+CUBE_OPTIONS="-u${XDG_DATA_HOME}/cubeconflict"
 
-cd "/app/share/cubeconflict" || exit 1
-exec "./run" "$@"
+cd ${CUBE_DATA}
+exec ${CUBE_BIN} ${CUBE_OPTIONS} "$@"
