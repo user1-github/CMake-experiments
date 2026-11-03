@@ -9,11 +9,12 @@ finish-args:
   - --share=network
   - --socket=wayland
   - --socket=fallback-x11
-  - --socket=pulseaudio
+  - --filesystem=xdg-run/pipewire-0:ro
 cleanup:
   - /include
   - /lib/cmake
   - /lib/pkgconfig
+  - /share/licenses
   - '*.la'
   - '*.a'
 modules:
@@ -38,31 +39,26 @@ modules:
   - name: cubeconflict
     buildsystem: cmake-ninja
     no-make-install: true
-    build-options:
-      env:
-        CXXFLAGS: ''
     make-args:
       - -v
     subdir: src
     sources:
       - type: git
         url: https://github.com/Big-Onche/Cube-Conflict.git
-        commit: bcf94c7bb5f15e5f52dac2c021ebc32fe81400d3
+        commit: 97bb7a8c0687078c767403dc2922fb91f203081c
       - type: file
         path: cube_conflict.sh
       - type: file
         path: CMakeLists.txt
       - type: file
         path: com.cube_conflict.CubeConflict.desktop
-      - type: patch
-        path: gcc16.patch
       - type: shell
         commands:
-          - cp CMakeLists.txt -t src
+          - cp CMakeLists.txt src
     post-install:
-      - install -Dm755 ../cube_conflict.sh /app/bin/cubeconflict
-      - install -Dm755 ../run.sh /app/share/cubeconflict/run
-      - install -Dm755 cc_client -t /app/share/cubeconflict/bins
+      - mkdir -p /app/share/cubeconflict
       - cp -a ../config ../media /app/share/cubeconflict
+      - install -Dm755 client -t /app/bin
+      - install -Dm755 ../cube_conflict.sh /app/bin/cubeconflict
       - install -Dm644 ../media/interface/cclogo.png /app/share/icons/hicolor/128x128/apps/com.cube_conflict.CubeConflict.png
       - install -Dm644 ../com.cube_conflict.CubeConflict.desktop -t /app/share/applications
