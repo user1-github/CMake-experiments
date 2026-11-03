@@ -58,7 +58,7 @@ modules:
         path: remove-enet_crc32_inc.patch
       - type: shell
         commands:
-          - cp CMakeLists.txt -t source
+          - cp CMakeLists.txt source
           - sed -i 's|//#define PRODUCTION|#define PRODUCTION|' 'source/src/cube.h'
     post-install:
       - mkdir -p /app/share/assaultcube
