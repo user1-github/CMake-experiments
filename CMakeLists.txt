@@ -13,7 +13,7 @@ find_package(X11 REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(ENET REQUIRED IMPORTED_TARGET libenet)
 
-add_executable(cc_client
+add_executable(client
     shared/crypto.cpp
     shared/geom.cpp
     shared/glemu.cpp
@@ -80,14 +80,14 @@ add_executable(cc_client
     game/weapon.cpp
 )
 
-target_include_directories(cc_client PRIVATE
+target_include_directories(client PRIVATE
     cubeconflict
     engine
     game
     shared
 )
 
-target_link_libraries(cc_client PRIVATE
+target_link_libraries(client PRIVATE
     SDL2::SDL2
     SDL2_image::SDL2_image
     OpenAL::OpenAL
@@ -98,7 +98,7 @@ target_link_libraries(cc_client PRIVATE
     PkgConfig::ENET
 )
 
-target_compile_options(cc_client PRIVATE
+target_compile_options(client PRIVATE
     -O3
     -fomit-frame-pointer
     -ffast-math
