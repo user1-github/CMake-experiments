@@ -111,5 +111,4 @@ target_compile_options(client PRIVATE
     -fno-exceptions
     -fno-rtti
     -Wno-invalid-offsetof
-    -std=c++17
 )
