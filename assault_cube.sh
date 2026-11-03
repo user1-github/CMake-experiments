@@ -1,7 +1,7 @@
 #!/bin/sh
-CUBE_DATA=/app/share/assaultcube
-CUBE_BIN=/app/bin/ac_client
-CUBE_OPTIONS="--home=${HOME}/.assaultcube --init"
+AC_DATA=/app/share/assaultcube
+AC_BIN=/app/bin/client
+AC_OPTIONS="--home=${XDG_DATA_HOME}/assaultcube --init"
 
-cd ${CUBE_DATA}
-exec ${CUBE_BIN} ${CUBE_OPTIONS} "$@"
+cd ${AC_DATA}
+exec ${AC_BIN} ${AC_OPTIONS} "$@"
