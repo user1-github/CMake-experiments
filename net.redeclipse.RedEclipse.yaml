@@ -45,20 +45,17 @@ modules:
     sources:
       - type: git
         url: https://github.com/redeclipse/base.git
-        commit: 65d41326de498fcd77ab330ef5c1e624e67579f6
+        commit: 9a87cfd01808f008c12333a8167f4a4fe5a9c28b
       - type: file
         path: redeclipse.sh
       - type: file
         path: CMakeLists.txt
-      - type: file
-        path: jsmn.h
       - type: patch
         path: xdg_data_home.patch
       - type: shell
         commands:
           - rm src/CMakeLists.txt
           - cp CMakeLists.txt src
-          - cp jsmn.h src/engine
     post-install:
       - install -Dm755 ../redeclipse.sh /app/bin/redeclipse
       - install -Dm755 client -t /app/share/redeclipse
