@@ -112,5 +112,4 @@ target_compile_options(client PRIVATE
     -fsigned-char
     -fno-exceptions
     -fno-rtti
-    -Wno-invalid-offsetof
 )
