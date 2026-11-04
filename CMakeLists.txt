@@ -94,7 +94,6 @@ target_compile_options(client PRIVATE
     -fomit-frame-pointer
     -ffast-math
     -Wall
-    -Wimplicit-fallthrough
     -fsigned-char
     -fno-exceptions
     -fno-rtti
