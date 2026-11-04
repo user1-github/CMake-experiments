@@ -35,7 +35,7 @@ add_executable(client
     engine/grass.cpp
     engine/http.cpp
     engine/httpnet.cpp
-    enjine/json.cpp
+    engine/json.cpp
     engine/irc.cpp
     engine/light.cpp
     engine/main.cpp
