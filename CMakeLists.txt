@@ -34,6 +34,8 @@ add_executable(client
     engine/fxprop.cpp
     engine/grass.cpp
     engine/http.cpp
+    engine/httpnet.cpp
+    enjine/json.cpp
     engine/irc.cpp
     engine/light.cpp
     engine/main.cpp
