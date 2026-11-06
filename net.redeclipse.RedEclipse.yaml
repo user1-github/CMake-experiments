@@ -25,6 +25,18 @@ modules:
         url: http://enet.bespin.org/download/enet-1.3.18.tar.gz
         sha256: 2a8a0c5360d68bb4fcd11f2e4c47c69976e8d2c85b109dd7d60b1181a4f85d36
 
+  - name: Mbed-TLS
+    buildsystem: cmake-ninja
+    builddir: true
+    sources:
+      - type: archive
+        url: https://github.com/Mbed-TLS/mbedtls/releases/download/mbedtls-3.6.7/mbedtls-3.6.7.tar.bz2
+        sha256: a7e8bcbec0e6f761b4af24f25677626b35f762f68eef79c08677a363212d11f6
+      - type: patch
+        path: patches/mbedtls_1.patch
+      - type: patch
+        path: patches/mbedtls_2.patch
+
   - name: SDL2_image
     buildsystem: cmake-ninja
     builddir: true
@@ -51,7 +63,7 @@ modules:
       - type: file
         path: CMakeLists.txt
       - type: patch
-        path: xdg_data_home.patch
+        path: patches/xdg_data_home.patch
       - type: shell
         commands:
           - rm src/CMakeLists.txt
