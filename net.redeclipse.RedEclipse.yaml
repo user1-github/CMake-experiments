@@ -28,6 +28,10 @@ modules:
   - name: Mbed-TLS
     buildsystem: cmake-ninja
     builddir: true
+    config-opts:
+      - -DUSE_SHARED_MBEDTLS_LIBRARY=ON
+      - -DENABLE_TESTING=OFF
+      - -DENABLE_PROGRAMS=OFF
     sources:
       - type: archive
         url: https://github.com/Mbed-TLS/mbedtls/releases/download/mbedtls-3.6.7/mbedtls-3.6.7.tar.bz2
