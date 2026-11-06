@@ -71,8 +71,6 @@ modules:
         path: patches/xdg_data_home.patch
       - type: shell
         commands:
-          - rm /app/lib/libeverest.a
-          - rm /app/lib/libp256m.a
           - rm src/CMakeLists.txt
           - cp CMakeLists.txt src
     post-install:
