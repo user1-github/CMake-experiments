@@ -30,6 +30,7 @@ modules:
     builddir: true
     config-opts:
       - -DUSE_SHARED_MBEDTLS_LIBRARY=ON
+      - -DUSE_STATIC_MBEDTLS_LIBRARY=OFF
       - -DENABLE_TESTING=OFF
       - -DENABLE_PROGRAMS=OFF
     sources:
