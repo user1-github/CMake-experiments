@@ -9,6 +9,7 @@ find_package(SndFile REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(X11 REQUIRED)
+find_package(MbedTLS REQUIRED)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(ENET REQUIRED IMPORTED_TARGET libenet)
@@ -99,6 +100,9 @@ target_link_libraries(client PRIVATE
     OpenGL::OpenGL
     ZLIB::ZLIB
     X11::X11
+    MbedTLS::mbedtls
+    MbedTLS::mbedx509
+    MbedTLS::mbedcrypto
     PkgConfig::ENET
     rt
 )
