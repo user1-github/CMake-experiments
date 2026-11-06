@@ -26,7 +26,6 @@ add_executable(client
     engine/command.cpp
     engine/console.cpp
     engine/dynlight.cpp
-    engine/godrays.cpp
     engine/grass.cpp
     engine/light.cpp
     engine/main.cpp
