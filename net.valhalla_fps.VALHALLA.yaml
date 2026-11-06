@@ -55,8 +55,8 @@ modules:
     subdir: source
     sources:
       - type: git
-        url: https://github.com/project-valhalla/base.git
-        tag: 'v1.0.0-beta.2'
+        url: https://github.com/user1-github/base-2.git
+        commit: 69aef84f31a6a1902ae5ea505d989a21e079ed0b
       - type: file
         path: valhalla.sh
       - type: file
