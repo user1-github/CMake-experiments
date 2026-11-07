@@ -44,8 +44,8 @@ modules:
     subdir: src
     sources:
       - type: git
-        url: https://github.com/Big-Onche/Cube-Conflict.git
-        commit: 97bb7a8c0687078c767403dc2922fb91f203081c
+        url: https://github.com/user1-github/Cube-Conflict.git
+        commit: 361a5f9db7f6e8eccd3684e97029335f63c86958
       - type: file
         path: cube_conflict.sh
       - type: file
