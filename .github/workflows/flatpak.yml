@@ -12,6 +12,14 @@ jobs:
       options: --privileged
     steps:
     - uses: actions/checkout@v7
+    - uses: actions/checkout@v7
+      with:
+        repository: flathub/shared-modules
+        path: shared-modules
+    - uses: actions/checkout@v7
+      with:
+        repository: user1-github/common-modules
+        path: common-modules
     - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: sauerbraten.flatpak
