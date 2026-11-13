@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 4.0)
 
 project(Tesseract LANGUAGES CXX)
 
+set(CMAKE_CXX_FLAGS "-O3 -fomit-frame-pointer -ffast-math -Wall -fsigned-char -fno-exceptions -fno-rtti")
+
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_mixer REQUIRED)
@@ -20,5 +22,3 @@ add_executable(client ${CLIENT_SOURCES})
 target_include_directories(client PRIVATE engine game shared)
 
 target_link_libraries(client PRIVATE SDL2::SDL2 SDL2_image::SDL2_image SDL2_mixer::SDL2_mixer OpenGL::OpenGL X11::X11 ZLIB::ZLIB PkgConfig::ENET)
-
-target_compile_options(client PRIVATE -O3 -fomit-frame-pointer -ffast-math -Wall -fsigned-char -fno-exceptions -fno-rtti)
