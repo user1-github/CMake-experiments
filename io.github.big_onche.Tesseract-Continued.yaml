@@ -22,7 +22,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/Big-Onche/Tesseract-Continued.git
-        commit: 54317a33974c4c2decfa5b571f48f4f5bbbcf90c
+        commit: 2b50e974b921e74ba812231d342d933e07c88575
       - type: file
         path: tesseract.sh
       - type: file
