@@ -22,7 +22,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/user1-github/base-1.git
-        commit: 6b0df2ce981520078ca70b07a0966e74dd9ed4be
+        commit: 34b8d5558d01c846f96eb6e63caa87cf988523c8
     post-install:
       - mkdir -p /app/share/blue-nebula
       - cp -a ../config ../data /app/share/blue-nebula
