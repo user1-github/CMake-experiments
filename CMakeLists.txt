@@ -2,8 +2,17 @@ cmake_minimum_required(VERSION 4.0)
 
 project(Sauerbraten LANGUAGES CXX)
 
+set(CMAKE_CXX_FLAGS "-O3 -fomit-frame-pointer -ffast-math -Wall -fsigned-char -fno-exceptions -fno-rtti")
+
+find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_mixer REQUIRED)
+find_package(OpenGL REQUIRED)
+find_package(X11 REQUIRED)
+find_package(ZLIB REQUIRED)
+
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(DEPS REQUIRED IMPORTED_TARGET x11 gl zlib libenet sdl2 SDL2_image SDL2_mixer)
+pkg_check_modules(ENET REQUIRED IMPORTED_TARGET libenet)
 
 file(GLOB CLIENT_SOURCES engine/*.cpp fpsgame/*.cpp shared/*.cpp)
 file(GLOB EXCLUDED_SOURCES engine/master.cpp engine/pch.cpp fpsgame/pch.cpp shared/pch.cpp)
@@ -12,6 +21,4 @@ add_executable(client ${CLIENT_SOURCES})
 
 target_include_directories(client PRIVATE engine fpsgame shared)
 
-target_link_libraries(client PRIVATE PkgConfig::DEPS)
-
-target_compile_options(client PRIVATE -O3 -fomit-frame-pointer -ffast-math -Wall -fsigned-char -fno-exceptions -fno-rtti)
+target_link_libraries(client PRIVATE SDL2::SDL2 SDL2_image::SDL2_image SDL2_mixer::SDL2_mixer OpenGL::OpenGL X11::X11 ZLIB::ZLIB PkgConfig::ENET)
